@@ -5,7 +5,9 @@ plugins {
 }
 
 // TODO : SDK 버전
-val sdkVersion: String = "1.0.1"
+val sdkVersion: String = "1.0.2"
+
+val publishModule = project.findProperty("PUBLISH_MODULE") as String? ?: ""
 
 android {
     namespace = "com.sample.mathLibrary"
@@ -38,15 +40,19 @@ android {
     resourcePrefix = "sampleTest_"
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = "com.github.yydud"
-            artifactId = "myMath"
-            version = sdkVersion
+if (publishModule == "myMath") {
+//    plugins.apply("maven-publish")
 
-            afterEvaluate {
-                from(components["release"])
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "com.github.yydud"
+                artifactId = "myMath"
+                version = sdkVersion
+
+                afterEvaluate {
+                    from(components["release"])
+                }
             }
         }
     }

@@ -8,6 +8,8 @@ plugins {
 // TODO : SDK 버전
 val sdkVersion: String = "1.0.0"
 
+val publishModule = project.findProperty("PUBLISH_MODULE") as String? ?: ""
+
 android {
     namespace = "com.sample.stringLibrary"
     compileSdk = 34
@@ -39,15 +41,19 @@ android {
     resourcePrefix = "sampleTest_"
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = "com.github.yydud"
-            artifactId = "myString"
-            version = sdkVersion
+if (publishModule == "myString") {
+//    plugins.apply("maven-publish")
 
-            afterEvaluate {
-                from(components["release"])
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "com.github.yydud"
+                artifactId = "myString"
+                version = sdkVersion
+
+                afterEvaluate {
+                    from(components["release"])
+                }
             }
         }
     }
