@@ -39,13 +39,15 @@ android {
     resourcePrefix = "sampleTest_"
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.yydud"
+            artifactId = "myString"
+            version = sdkVersion
+
+            afterEvaluate {
                 from(components["release"])
-                artifactId = "myString"
-                version = sdkVersion
             }
         }
     }

@@ -5,7 +5,7 @@ plugins {
 }
 
 // TODO : SDK 버전
-val sdkVersion: String = "1.0.0"
+val sdkVersion: String = "1.0.1"
 
 android {
     namespace = "com.sample.mathLibrary"
@@ -38,13 +38,15 @@ android {
     resourcePrefix = "sampleTest_"
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("release") {
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.yydud"
+            artifactId = "myMath"
+            version = sdkVersion
+
+            afterEvaluate {
                 from(components["release"])
-                artifactId = "myMath"
-                version = sdkVersion
             }
         }
     }
