@@ -5,9 +5,9 @@ plugins {
 }
 
 
-// TODO : SDK 버전
+// TODO SDK 버전
 val sdkVersion: String = "1.0.0"
-
+// TODO 배포 모듈명 가져오기
 val publishModule = project.findProperty("PUBLISH_MODULE") as String? ?: ""
 
 android {
