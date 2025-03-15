@@ -5,7 +5,7 @@ plugins {
 }
 
 // TODO : SDK 버전
-val sdkVersion: String = "1.0.2"
+val sdkVersion: String = "1.0.3"
 
 val publishModule = project.findProperty("PUBLISH_MODULE") as String? ?: ""
 
